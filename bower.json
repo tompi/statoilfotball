@@ -1,0 +1,18 @@
+{
+  "name": "eventManager",
+  "version": "0.0.0",
+  "authors": [
+    "Thomas Haukland <thomas.haukland@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.0.3"
+  }
+}
