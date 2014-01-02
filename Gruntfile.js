@@ -43,7 +43,20 @@ module.exports = function(grunt) {
         ]
       }
     },
-    clean: ['build/']
+    clean: ['build/'],
+    watch: {
+      options: {
+        livereload: true
+      },
+      css: {
+        files: ['client/**/*.css', '!**/*.min.css'],
+        tasks: ['cssmin']
+      },
+      less: {
+        files: ['client/**/*.less'],
+        tasks: ['less']
+      }
+    }
   });
 
   // Default task(s).
