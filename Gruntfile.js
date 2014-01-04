@@ -33,17 +33,20 @@ module.exports = function(grunt) {
         files: [
           {expand: true, cwd: 'bower_components/bootstrap/dist', src: ['fonts/*'], dest: 'client/'},
           {expand: true, cwd: 'bower_components/bootstrap/dist/js', src: ['*.min.js'], dest: 'client/js/lib/'},
-          {expand: true, cwd: 'bower_components/jquery/', src: ['jquery.min.js'], dest: 'client/js/lib/'}
+          {expand: true, cwd: 'bower_components/angular/', src: ['angular.min.js', 'angular.min.js.map'], dest: 'client/js/lib/'},
+          {expand: true, cwd: 'bower_components/angular-route/', src: ['angular-route.min.js', 'angular-route.min.js.map'], dest: 'client/js/lib/'},
+          {expand: true, cwd: 'bower_components/jquery/', src: ['jquery.min.js', 'jquery.min.map'], dest: 'client/js/lib/'},
+          {expand: true, src: ['*.json'], dest: 'client/home/'}
         ]
       },
       build: {
         files: [
           {expand: true, cwd: 'server/', src: ['**'], dest: 'build/server/'},
-          {expand: true, cwd: 'client', src: ['**/*.min.*', '*.html', 'fonts/*'], dest: 'build/client'}
+          {expand: true, cwd: 'client', src: ['**/*.min.*', '*.html', 'fonts/*', '*.json'], dest: 'build/client'}
         ]
       }
     },
-    clean: ['build/'],
+    clean: ['build/', 'client/js/lib/'],
     watch: {
       options: {
         livereload: true
@@ -55,6 +58,10 @@ module.exports = function(grunt) {
       less: {
         files: ['client/**/*.less'],
         tasks: ['less']
+      },
+      html: {
+        files: ['client/**/*.html'],
+        tasks: []
       }
     }
   });
