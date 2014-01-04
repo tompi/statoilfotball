@@ -23,6 +23,7 @@ module.exports = function(grunt) {
         files: {
           'client/css/all.min.css': [
             'client/css/bootstrap.css',
+            'client/css/datepicker3.css',
             'client/css/custom.css'
           ]
         }
@@ -33,8 +34,11 @@ module.exports = function(grunt) {
         files: [
           {expand: true, cwd: 'bower_components/bootstrap/dist', src: ['fonts/*'], dest: 'client/'},
           {expand: true, cwd: 'bower_components/bootstrap/dist/js', src: ['*.min.js'], dest: 'client/js/lib/'},
-          {expand: true, cwd: 'bower_components/angular/', src: ['angular.min.js', 'angular.min.js.map'], dest: 'client/js/lib/'},
+          {expand: true, cwd: 'bower_components/angular/', src: ['angular.min.js', 'angular.min.js.map', 'angular.js'], dest: 'client/js/lib/'},
           {expand: true, cwd: 'bower_components/angular-route/', src: ['angular-route.min.js', 'angular-route.min.js.map'], dest: 'client/js/lib/'},
+          {expand: true, cwd: 'bower_components/bootstrap-datepicker/js/', src: ['bootstrap-datepicker.js'], dest: 'client/js/lib/'},
+          {expand: true, cwd: 'bower_components/bootstrap-datepicker/css/', src: ['datepicker3.css'], dest: 'client/css/'},
+          {expand: true, cwd: 'bower_components/angular-strap/dist/', src: ['angular-strap.min.js'], dest: 'client/js/lib/'},
           {expand: true, cwd: 'bower_components/jquery/', src: ['jquery.min.js', 'jquery.min.map'], dest: 'client/js/lib/'},
           {expand: true, src: ['*.json'], dest: 'client/home/'}
         ]
