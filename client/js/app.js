@@ -1,4 +1,4 @@
-var webapp = angular.module('webapp', ['ngRoute', '$strap.directives']);
+var webapp = angular.module('webapp', ['ngRoute', 'restangular', '$strap.directives']);
 
 webapp.config(
   ['$routeProvider',
@@ -13,6 +13,11 @@ webapp.config(
              {
                 templateUrl: 'forms/index.html',
                 controller: 'FormsCtrl'
+             }).
+        when('/mongodb',
+             {
+                templateUrl: 'mongodb/index.html',
+                controller: 'MongodbCtrl'
              }).
         when('/about',
              {

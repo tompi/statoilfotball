@@ -8,6 +8,7 @@ webapp.controller(
       $scope.firstName = 'Thomas';
       $scope.lastName = 'Haukland';
       $scope.email = 'thomas.haukland@gmail.com';
+      $scope.sex = 'male';
     }
   ]
 );

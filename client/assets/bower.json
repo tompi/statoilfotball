@@ -18,7 +18,6 @@
     "angular-route": "~1.2.7",
     "jquery": "~2.0.3",
     "angular-strap": "~0.7.8",
-    "restangular": "~1.2.2",
-    "font-awesome": "~4.0.3"
+    "restangular": "~1.2.2"
   }
 }
