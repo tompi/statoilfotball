@@ -5,3 +5,11 @@ html {
   -o-background-size: cover;
   background-size: cover; */
 }
+
+.done {
+  text-decoration: line-through;
+}
+
+ul {
+  list-style-type: none;
+}

@@ -2,4 +2,5 @@ bower_components/
 node_modules/
 build/
 client/js/lib/
+client/assets/fonts/
 .tmp/

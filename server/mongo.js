@@ -4,11 +4,12 @@ var ObjectId = mongoose.Schema.ObjectId;
 
 // Passports unified user schema
 var UserSchema = new Schema({
+  id: String,
   provider:String,
   displayName:String,
   name:{familyName:String,givenName:String,middleName:String},
-  emails:[{value:String,type:String}],
-  photos:[{value:String}]
+  email:String,
+  photo:String
 });
 
 var TodoSchema = new Schema({

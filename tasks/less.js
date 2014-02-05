@@ -5,7 +5,8 @@ module.exports = {
       cleancss: true
     },
     files: {
-      "client/css/bootstrap.css": "client/css/bootstrap.less"
+      "client/css/bootstrap.css": "client/css/bootstrap.less",
+      "client/css/font-awesome.css": "client/css/font-awesome.less"
     }
   }
 };

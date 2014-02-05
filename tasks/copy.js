@@ -2,6 +2,7 @@ module.exports = {
   dev: {
     files: [
       {expand: true, cwd: 'bower_components/bootstrap/dist', src: ['fonts/*'], dest: 'client/assets/'},
+      {expand: true, cwd: 'bower_components/font-awesome', src: ['fonts/*'], dest: 'client/assets/'},
       {expand: true, cwd: 'bower_components/bootstrap/dist/js', src: ['bootstrap.js'], dest: 'client/js/lib/'},
       {expand: true, cwd: 'bower_components/angular/', src: ['angular.js'], dest: 'client/js/lib/'},
       {expand: true, cwd: 'bower_components/angular-route/', src: ['angular-route.js'], dest: 'client/js/lib/'},
@@ -11,7 +12,7 @@ module.exports = {
       {expand: true, cwd: 'bower_components/jquery/', src: ['jquery.js'], dest: 'client/js/lib/'},
       {expand: true, cwd: 'bower_components/lodash/dist/', src: ['lodash.js'], dest: 'client/js/lib/'},
       {expand: true, cwd: 'bower_components/restangular/dist/', src: ['restangular.js'], dest: 'client/js/lib/'},
-      {expand: true, src: ['*.json'], dest: 'client/assets/'}
+      {expand: true, src: ['*.json'], dest: 'client/home/'}
     ]
   },
   build: {

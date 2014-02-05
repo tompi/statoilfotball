@@ -1,8 +1,8 @@
 var webapp = angular.module('webapp', ['ngRoute', 'restangular', '$strap.directives']);
 
 webapp.config(
-  ['$routeProvider',
-    function($routeProvider) {
+  ['$routeProvider', 'RestangularProvider',
+    function($routeProvider, RestangularProvider) {
       $routeProvider.
         when('/',
              {
@@ -19,6 +19,11 @@ webapp.config(
                 templateUrl: 'mongodb/index.html',
                 controller: 'MongodbCtrl'
              }).
+        when('/passport',
+             {
+                templateUrl: 'passport/index.html',
+                controller: 'PassportCtrl'
+             }).
         when('/about',
              {
                 templateUrl: 'about/index.html',
@@ -28,6 +33,12 @@ webapp.config(
              {
                 redirectTo: '/'
              });
+      RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
+        return response.payload;
+      });
+      RestangularProvider.setRestangularFields({
+        id: "_id",
+      });
     }
 ]);
 
