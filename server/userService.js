@@ -15,13 +15,16 @@ module.exports = function(connection) {
     User
     .find({id: profile.id, provider: profile.provider},
           function(err, usr) {
+            // First add calculated email and photo attributes
+            // (instead of those pesky arrays of objects...)
+            profile.email = getFirstValue(profile.emails);
+            profile.photo = getFirstValue(profile.photos) || profile._json.picture;
             if (usr && usr.length) {
-              // TODO: Should diff obj's and update db if changed
-              next(usr);
+              User.findByIdAndUpdate(usr[0]._id, { $set: profile }, function(err, updatedUsr) {
+                next(updatedUsr);
+              });
             } else {
               // Create
-              profile.email = getFirstValue(profile.emails);
-              profile.photo = getFirstValue(profile.photos) || profile._json.picture;
               usr = new User(profile);
               usr.save(function(err, usr) {
                 next(usr);
@@ -29,6 +32,5 @@ module.exports = function(connection) {
             }
           });
   };
-
   return me;
 };

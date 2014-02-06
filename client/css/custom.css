@@ -13,3 +13,7 @@ html {
 ul {
   list-style-type: none;
 }
+
+img.profile-photo {
+  max-width: 80px;
+}

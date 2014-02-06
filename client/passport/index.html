@@ -1,7 +1,32 @@
 <div class="well">
-  <h1>Login with:</h1>
-  <div class="row">
+
+  <div class="row" ng-show="loggedIn">
+    <div class="col-md-4">
+      <div class="well well-sm">
+        <div class="media">
+          <a class="thumbnail pull-left" ng-href="{{account-photo}}">
+            <img class="media-object profile-photo" ng-src="{{account.photo}}">
+          </a>
+          <div class="media-body">
+            <h4 class="media-heading">{{account.displayName}}</h4>
+            <p>
+              <a ng-href="mailto:{{account.email}}" class="btn btn-xs btn-default">
+                <i class="fa fa-envelope"></i> {{account.email}}
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <a class="btn btn-primary" ng-click="logout()">
+        <i class="fa fa-sign-out fa-3"></i> Log out
+      </a>
+    </div>
+  </div>
+
+  <div class="row" ng-hide="loggedIn">
     <div class="col-md-12">
+      <h1>Login with:</h1>
       <p>
         <a href="/auth/facebook" class="btn btn-lg btn-default">
           <i class="fa fa-2x fa-facebook-square"></i> Facebook

@@ -1,7 +1,7 @@
 exports.init = function(app, config, passport, userService) {
 
     function afterLogin(req, res) {
-      res.redirect('/');
+      res.redirect('/#/passport');
     }
 
     var users = [];
@@ -74,13 +74,14 @@ exports.init = function(app, config, passport, userService) {
     }
 
     // For debug purposes: get your own account info as json
-    app.get('/account-json', ensureAuthenticated, function(req, res) {
+    app.get('/auth/account', function(req, res) {
         res.json(req.user);
     });
 
-    app.get('/logout', function(req, res) {
+    app.get('/auth/logout', function(req, res) {
         req.logout();
-        res.redirect('/');
+        res.json({ loggedOut: true });
+        //res.redirect('/');
     });
 
     function ensureAuthenticated(req, res, next) {
