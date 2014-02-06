@@ -6,28 +6,8 @@ webapp.config(
       $routeProvider.
         when('/',
              {
-               templateUrl: 'home/index.html',
-               controller: 'HomeCtrl'
-             }).
-        when('/forms',
-             {
-                templateUrl: 'forms/index.html',
-                controller: 'FormsCtrl'
-             }).
-        when('/mongodb',
-             {
-                templateUrl: 'mongodb/index.html',
-                controller: 'MongodbCtrl'
-             }).
-        when('/passport',
-             {
-                templateUrl: 'passport/index.html',
-                controller: 'PassportCtrl'
-             }).
-        when('/about',
-             {
-                templateUrl: 'about/index.html',
-                //controller: 'AboutCtrl'
+               templateUrl: 'fotball/index.html',
+               controller: 'FotballCtrl'
              }).
         otherwise(
              {

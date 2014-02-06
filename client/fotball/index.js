@@ -1,5 +1,5 @@
 webapp.controller(
-  'PassportCtrl', 
+  'FotballCtrl', 
   [
     '$scope', 
     '$http',
