@@ -61,7 +61,7 @@ exports.init = function(app, config, passport, userService) {
             }), afterLogin);
   }
 
-  var linkedinConfig = config.passport.facebook;
+  var linkedinConfig = config.passport.linkedin;
   if (linkedinConfig) {
     var LinkedInStrategy = require('passport-linkedin').Strategy;
     passport.use(new LinkedInStrategy(linkedinConfig, authenticatedUser));

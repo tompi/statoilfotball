@@ -1,6 +1,6 @@
 module.exports = {
   mongodb: {
-    host: 'linus.mongohq.com:10010',
+    host: 'widmore.mongohq.com:10010',
     db: 'jobbfotball',
     user: 'statoil',
     password: 'procosys'
