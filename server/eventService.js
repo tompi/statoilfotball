@@ -2,7 +2,6 @@ var eventCalculator = require('./eventCalculator');
 
 module.exports = function(connection) {
   var me = {};
-  // get MERS connection and reuse it...
   var Event = connection.model('Event');
 
   me.findOrCreateNextEvent = function(next) {

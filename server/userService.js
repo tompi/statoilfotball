@@ -1,6 +1,5 @@
 module.exports = function(connection) {
   var me = {};
-  // get MERS connection and reuse it...
   var User = connection.model('User');
 
   function getFirstValue(valueArray) {

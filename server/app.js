@@ -34,18 +34,22 @@ app.configure('development', function(){
 
 
 var mongo = require('./mongo.js');
-var mers = require('mers');
+//var mers = require('mers');
 var mc = config.mongodb;
 
-app.use('/api/v1', mers({
-  uri: 'mongodb://' + mc.user + ':' + mc.password + '@' + mc.host + '/' + mc.db
-}).rest());
+//app.use('/api/v1', mers({
+var  uri = 'mongodb://' + mc.user + ':' + mc.password + '@' + mc.host + '/' + mc.db;
+var mongoose = require('mongoose');
+mongoose.connect(uri);
+//}).rest());
+  //
+  //var 
 
-var userService = require('./userService')(app.locals.mers.conn);
+var userService = require('./userService')(mongoose);
 auth.init(app, config, passport, userService);
 
 // Custom rest endpoints:
-var eventService = require('./eventService')(app.locals.mers.conn);
+var eventService = require('./eventService')(mongoose);
 app.get('/event/next', function(req, res) {
   eventService.findOrCreateNextEvent(function(event) {
     res.json(event);
