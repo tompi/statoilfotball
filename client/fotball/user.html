@@ -1,0 +1,13 @@
+<div class="media">
+  <a class="thumbnail pull-left" ng-href="{{user.photo}}">
+    <img class="media-object profile-photo" ng-src="{{user.photo}}"/>
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading">{{user.displayName}}</h4>
+    <p>
+      <a ng-href="mailto:{{user.email}}" class="btn btn-xs btn-default">
+        <i class="fa fa-envelope"></i> {{user.email}}
+      </a>
+    </p>
+  </div>
+</div>

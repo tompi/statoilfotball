@@ -17,3 +17,30 @@ ul {
 img.profile-photo {
   max-width: 80px;
 }
+
+.contact {
+  border: 1px solid #CCCCCC;
+  float: left;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.thumbnail {
+  margin-bottom: 5px;
+}
+
+.contacts {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.coming {
+  background-color: #dff0d8;
+}
+.notComing {
+  background-color: #D48582;
+}
+.maybeComing {
+  background-color: #F3FC96;
+}

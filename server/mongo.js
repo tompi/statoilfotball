@@ -12,10 +12,14 @@ var UserSchema = new Schema({
   photo:String
 });
 
-var TodoSchema = new Schema({
-  text:String,
-  done:Boolean
+var EventSchema = new Schema({
+  title:String,
+  year:Number,
+  week:Number,
+  coming: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  notComing: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  maybeComing: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 });
 
 var User = module.exports.User = mongoose.model('User', UserSchema);
-var Todo = module.exports.Todo = mongoose.model('Todo', TodoSchema);
+var Event = module.exports.Event = mongoose.model('Event', EventSchema);

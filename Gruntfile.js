@@ -5,6 +5,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     jshint: require('./tasks/jshint'),
+    nodeunit: require('./tasks/nodeunit'),
     less: require('./tasks/less'),
     copy: require('./tasks/copy'),
     clean: require('./tasks/clean'),
@@ -14,5 +15,15 @@ module.exports = function(grunt) {
   });
 
   // Default task(s).
-  grunt.registerTask('default', ['clean', 'jshint', 'less', 'copy', 'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin']);
+  grunt.registerTask('default', [
+                     'clean', 
+                     'jshint', 
+                     'nodeunit', 
+                     'less', 
+                     'copy', 
+                     'useminPrepare', 
+                     'concat', 
+                     'uglify', 
+                     'cssmin', 
+                     'usemin']);
 };
