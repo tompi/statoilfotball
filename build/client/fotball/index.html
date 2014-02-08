@@ -1,0 +1,90 @@
+<div class="well">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Neste trening: mandag 14:00 uke {{event.week}} {{event.year}}</h3>
+    </div>
+  </div>
+
+  <div class="row ng-hide" ng-show="loggedIn">
+    <div class="col-md-12">
+      <div class="well well-sg">
+        <div class="col-md-4">
+          <div ng-include src="'fotball/user.html'"></div>
+        </div>
+        <div class="col-md-8">
+          <a class="btn btn-default" ng-class="{disabled: coming}" 
+            ng-click="coming=true;notComing=false;maybeComing=false;changeStatus();">
+            <i class="fa fa-thumbs-up fa-3"></i> Jeg kommer
+          </a>
+          <a class="btn btn-default" ng-class="{disabled: maybeComing}"
+            ng-click="coming=false;notComing=false;maybeComing=true;changeStatus();">
+            <i class="fa fa-question fa-3"></i> Jeg kommer kanskje
+          </a>
+          <a class="btn btn-default" ng-class="{disabled: notComing}" 
+            ng-click="coming=false;notComing=true;maybeComing=false;changeStatus();">
+            <i class="fa fa-thumbs-down fa-3"></i> Jeg kommer ikke
+          </a>
+        </div>
+        <div class="clearfix"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" ng-hide="loggedIn">
+      <div class="col-md-12">
+        <div class="well well-sg">
+          <h2>Logg inn for å si fra om du kommer eller ikke:</h2>
+          <p>
+            <a href="/auth/facebook" class="btn btn-lg btn-default">
+              <i class="fa fa-2x fa-facebook-square"></i> Facebook
+            </a>
+            <a href="/auth/google" class="btn btn-lg btn-default">
+              <i class="fa fa-2x fa-google-plus"></i> Google
+            </a>
+            <a href="/auth/linkedin" class="btn btn-lg btn-default">
+              <i class="fa fa-2x fa-linkedin"></i> LinkedIn
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="well well-sg">
+          <div class="contacts coming">
+            <b>Disse kommer:</b>
+            <div ng-repeat="user in event.coming">
+              <div class="contact" ng-include src="'fotball/user.html'"></div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="contacts maybeComing">
+            <b>Disse kommer KANSKJE:</b>
+            <div ng-repeat="user in event.maybeComing">
+              <div class="contact" ng-include src="'fotball/user.html'"></div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="contacts notComing">
+            <b>Disse kommer IKKE:</b>
+            <div ng-repeat="user in event.notComing">
+              <div class="contact" ng-include src="'fotball/user.html'"></div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <a ng-click="logout()" class="ng-hide pull-right" ng-show="loggedIn">
+          Logg ut
+        </a>
+      </div>
+    </div>
+
+  </div>
+
