@@ -1,17 +1,22 @@
 module.exports = {
   mongodb: {
     host: 'linus.mongohq.com:10010',
-    db: 'webapp',
-    user: 'webapuser',
-    password: 'topsecret'
+    db: 'jobbfotball',
+    user: 'statoil',
+    password: 'procosys'
   },
-  sessionSecret: 'verytopsecret',
+  sessionSecret: 'statoilfotball',
   passport: {
     google: {
-      clientID: '1098607882040.apps.googleusercontent.com',
-      clientSecret: 'CISVtnCf9N5L7IZPBVddeK48',
-      emailAddress: '1098607882040@developer.gserviceaccount.com',
-      callbackURL: 'http://localhost:3000/oauth2callback'
+      clientID: '198166778757.apps.googleusercontent.com',
+      clientSecret: 'f_d8LFCyqg1tyqFQ41xbOTTc',
+      emailAddress: '198166778757@developer.gserviceaccount.com',
+      callbackURL: 'http://statoilfotball.herokuapp.com/oauth2callback'
+    },
+    facebook: {
+      clientID: '403518086450774',
+      clientSecret: '7b5399bdb5fff8970deb062bd150823b',
+      callbackURL: 'http://statoilfotball.herokuapp.com/auth/facebook/callback'
     }
   }
 };
