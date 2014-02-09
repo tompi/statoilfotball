@@ -13,10 +13,19 @@ module.exports = {
       emailAddress: '198166778757@developer.gserviceaccount.com',
       callbackURL: 'http://statoilfotball.herokuapp.com/oauth2callback'
     },
+    /*
+    facebook: {
+      clientID: '396026930541318',
+      clientSecret: 'c8c711ef1c55b53b5ac926893c954d85',
+      callbackURL: 'http://localhost:3000/auth/facebook/callback',
+      profileFields: ['id', 'name', 'emails', 'displayName', 'photos']
+    }
+    */
     facebook: {
       clientID: '403518086450774',
       clientSecret: '7b5399bdb5fff8970deb062bd150823b',
-      callbackURL: 'http://statoilfotball.herokuapp.com/auth/facebook/callback'
+      callbackURL: 'http://statoilfotball.herokuapp.com/auth/facebook/callback',
+      profileFields: ['id', 'name', 'emails', 'displayName', 'photos']
     }
   }
 };

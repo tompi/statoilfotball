@@ -12,21 +12,24 @@ module.exports = function(connection) {
 
   me.findOrCreateUser = function(profile, next) {
     User
-    .find({id: profile.id, provider: profile.provider},
+    .findOne({id: profile.id, provider: profile.provider},
           function(err, usr) {
             // First add calculated email and photo attributes
             // (instead of those pesky arrays of objects...)
             profile.email = getFirstValue(profile.emails);
-            profile.photo = getFirstValue(profile.photos) || profile._json.picture;
-            if (usr && usr.length) {
-              User.findByIdAndUpdate(usr[0]._id, { $set: profile }, function(err, updatedUsr) {
+            profile.photo = getFirstValue(profile.photos) || 
+                            profile._json.picture || 
+                            '';
+            profile.name.middleName = profile.name.middleName || '';
+            if (usr) {
+              User.findByIdAndUpdate(usr._doc._id, { $set: profile }, function(err, updatedUsr) {
                 next(updatedUsr);
               });
             } else {
               // Create
               usr = new User(profile);
-              usr.save(function(err, usr) {
-                next(usr);
+              usr.save(function(err, createdUsr) {
+                next(createdUsr);
               });
             }
           });
