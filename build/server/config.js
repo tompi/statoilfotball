@@ -23,7 +23,7 @@ module.exports = {
       clientID: '198166778757.apps.googleusercontent.com',
       clientSecret: 'f_d8LFCyqg1tyqFQ41xbOTTc',
       emailAddress: '198166778757@developer.gserviceaccount.com',
-      callbackURL: pathPrefix + '/oauth2callback',
+      callbackURL: 'http://fotball.us/oauth2callback',
       handler: '/oauth2callback'
     },
     /* Debug:
