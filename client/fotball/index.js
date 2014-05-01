@@ -20,10 +20,12 @@ webapp.controller(
         if (event) {
           // Convert week to date
           var m = moment('1-' + event.week + '-' + event.year + '-14:00', 'E-WW-YYYY-HH:mm');
-          $scope.nextEvent = m.format('dddd Do MMM YYYY');
+          $scope.nextEvent = m.format('HH:mm dddd Do MMM YYYY');
           $scope.nextEventFromNow = m.fromNow();
         }
       }
+
+      window.setInterval(calculateNextEvent, 5000);
 
       function updateMyStatus() {
         var event = $scope.event;
