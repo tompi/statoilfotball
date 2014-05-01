@@ -2,6 +2,8 @@ module.exports = {
   dev: {
     files: [
       {expand: true, cwd: 'bower_components/bootstrap/dist', src: ['fonts/*'], dest: 'client/assets/'},
+      {expand: true, cwd: 'node_modules/moment/', src: ['moment.js'], dest: 'client/js/lib/'},
+      {expand: true, cwd: 'node_modules/moment/lang/', src: ['nb.js'], dest: 'client/js/lib/'},
       {expand: true, cwd: 'bower_components/font-awesome', src: ['fonts/*'], dest: 'client/assets/'},
       {expand: true, cwd: 'bower_components/bootstrap/dist/js', src: ['bootstrap.js'], dest: 'client/js/lib/'},
       {expand: true, cwd: 'bower_components/angular/', src: ['angular.js'], dest: 'client/js/lib/'},

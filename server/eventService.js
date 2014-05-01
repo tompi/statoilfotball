@@ -1,7 +1,8 @@
 var eventCalculator = require('./eventCalculator');
+var EventEmitter = require('events').EventEmitter;
 
 module.exports = function(connection) {
-  var me = {};
+  var me = new EventEmitter();
   var Event = connection.model('Event');
 
   me.findOrCreateNextEvent = function(next) {
@@ -12,12 +13,12 @@ module.exports = function(connection) {
       .populate('coming maybeComing notComing')
       .exec(function(err, dbEvent) {
             if (dbEvent) {
-              next(dbEvent);
+              if (next) next(dbEvent);
             } else {
               // Create
               var newEvent = new Event(nextEvent);
               newEvent.save(function(err, newEventSaved) {
-                next(newEventSaved);
+                if (next) next(newEventSaved);
               });
             }
     });
@@ -37,6 +38,17 @@ module.exports = function(connection) {
       addOrRemove(notComing, userId, event.notComing);   
       addOrRemove(maybeComing, userId, event.maybeComing);   
       event.save(function() {
+        me.emit('eventChanged');
+        me.findOrCreateNextEvent(next);
+      });
+    });
+  };
+
+  me.updateDescription = function(description, next) {
+    me.findOrCreateNextEvent(function(event) {
+      event.description = description;
+      event.save(function() {
+        me.emit('eventChanged');
         me.findOrCreateNextEvent(next);
       });
     });

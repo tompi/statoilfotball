@@ -16,6 +16,7 @@ var EventSchema = new Schema({
   title:String,
   year:Number,
   week:Number,
+  description:String,
   coming: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   notComing: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   maybeComing: [{ type: Schema.Types.ObjectId, ref: 'User' }]

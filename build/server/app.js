@@ -9,7 +9,6 @@ var path = require('path');
 var passport = require('passport');
 var auth = require('./auth');
 var config = require('./config');
-
 var app = express();
 
 app.configure(function(){
@@ -71,6 +70,28 @@ app.post('/event/changeStatus', function(req, res) {
     }
 });
 
-http.createServer(app).listen(app.get('port'), function(){
+app.post('/event/updateDescription', function(req, res) {
+  if (!req.isAuthenticated()) res.json({error: 'not logged in!'});
+  else {
+    // Extract parameters
+    eventService.updateDescription(
+      req.body.description,
+      function(event) {
+        res.json(event);
+      });
+    }
+});
+
+var server = http.createServer(app);
+server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
+});
+
+// Sockets
+var io = require('socket.io').listen(server);
+
+io.sockets.on('connection', function(socket) {
+  eventService.on('eventChanged', function(event) {
+    socket.emit('eventChanged', event);
+  });
 });

@@ -2,9 +2,31 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h3>Neste trening: mandag 14:00 uke {{event.week}} {{event.year}}</h3>
+      <h3>Neste trening: {{event.nextEvent}} <small>{{event.nextEventFromNow}}</small></h3>
     </div>
   </div>
+    <div class="row ng-hide" ng-show="!!event.description">
+      <div class="col-md-12">
+        <div class="contacts bg-info">
+          <p>{{event.description}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row ng-hide pull-right" ng-show="loggedIn">
+      <div class="col-md-12">
+        <a ng-click="editDescription = !editDescription" href="">Rediger ekstra trenings-info</a>
+      </div>
+    </div>
+    <div class="row ng-hide" ng-show="loggedIn && editDescription">
+      <div class="col-md-12">
+        <textarea ng-model="event.description" class="form-control" rows="3"></textarea>
+        <a class="btn btn-default pull-right" ng-click="updateDescription()">
+          <i class="fa fa-save fa-1"></i> Lagre beskrivelse
+        </a>
+      </div>
+      <div class="clearfix"/>
+      <br/>
+    </div>
 
   <div class="row ng-hide" ng-show="loggedIn">
     <div class="col-md-12">
@@ -77,7 +99,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <a ng-click="logout()" class="ng-hide pull-right" ng-show="loggedIn">
+        <a href="" ng-click="logout()" class="ng-hide pull-right" ng-show="loggedIn">
           Logg ut
         </a>
       </div>

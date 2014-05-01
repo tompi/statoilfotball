@@ -4,9 +4,26 @@ webapp.controller(
     '$scope', 
     'authService',
     'eventService',
-    function($scope, authService, eventService) {
+    'socket',
+    function($scope, authService, eventService, socket) {
 
       $scope.loggedIn = false;
+
+      authService.getAccount(function(user) {
+        $scope.user = user;
+        $scope.loggedIn = user && user.id;
+        updateMyStatus();
+      });
+
+      function calculateNextEvent() {
+        var event = $scope.event;
+        if (event) {
+          // Convert week to date
+          var m = moment('1-' + event.week + '-' + event.year + '-14:00', 'E-WW-YYYY-HH:mm');
+          $scope.nextEvent = m.format('dddd Do MMM YYYY');
+          $scope.nextEventFromNow = m.fromNow();
+        }
+      }
 
       function updateMyStatus() {
         var event = $scope.event;
@@ -24,20 +41,22 @@ webapp.controller(
         $scope.maybeComing = maybeComing;
       }
 
+      function refreshEvent() {
+        eventService.getNextEvent(function(event) {
+          $scope.event = event;
+          calculateNextEvent();
+          updateMyStatus();
+        });
+      }
+
+      refreshEvent();
+
+      // Server-side events:
+      socket.on('eventChanged', refreshEvent);
+
       function contains(userArray, id) {
         return _.contains(_.pluck(userArray, '_id'), id);
       }
-
-      authService.getAccount(function(user) {
-        $scope.user = user;
-        $scope.loggedIn = user && user.id;
-        updateMyStatus();
-      });
-
-      eventService.getNextEvent(function(event) {
-        $scope.event = event;
-        updateMyStatus();
-      });
 
       $scope.changeStatus = function() {
         eventService.changeStatus($scope.coming, $scope.notComing, $scope.maybeComing, function(event) {
@@ -46,12 +65,16 @@ webapp.controller(
         });
       };
 
+      $scope.updateDescription = function() {
+        eventService.updateDescription($scope.event.description);
+      };
+
       $scope.logout = function() {
         authService.logout(function() {
           delete $scope.user;
           $scope.loggedIn = false;
         });
-      };    
+      };
     }
   ]
 );

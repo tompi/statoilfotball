@@ -22,6 +22,14 @@ webapp.factory(
           next(event.data);
         });
       };
+      me.updateDescription = function(description, next) {
+        var promise = $http.post('/event/updateDescription', {
+                                description: description
+        });
+        promise.then(function(event) {
+          if (next) next(event.data);
+        });
+      };
 
       return me;
     }
