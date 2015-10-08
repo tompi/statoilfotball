@@ -1,6 +1,6 @@
-Statoil Fotball
+Webstep Fotball
 ===============
 
-Påmelding til mandagsfotball på statoil
+Påmelding til søndagsfotball på statoil
 
 Thomas.Haukland@gmail.com
