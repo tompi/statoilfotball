@@ -1,7 +1,7 @@
 var moment = require('moment');
-var eventDay = 1;
-var eventHour = 14;
-var eventMinute = 0;
+var eventDay = 0;
+var eventHour = 19;
+var eventMinute = 45;
 var eventSecond = 0;
 
 module.exports = {

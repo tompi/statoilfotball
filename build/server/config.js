@@ -2,12 +2,12 @@ var url = require('url');
 
 module.exports = {
   mongodb: {
-    host: 'widmore.mongohq.com:10010',
-    db: 'jobbfotball',
-    user: 'statoil',
-    password: 'procosys'
+    host: 'ds033734.mongolab.com:33734',
+    db: 'webstepfotball',
+    user: 'webstep',
+    password: 'topsecret'
   },
-  sessionSecret: 'statoilfotball',
+  sessionSecret: 'webstepsecret',
   passport: {
     /* Debug:
     google: {

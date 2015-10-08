@@ -19,7 +19,7 @@ webapp.controller(
         var event = $scope.event;
         if (event) {
           // Convert week to date
-          var m = moment('1-' + event.week + '-' + event.year + '-14:00', 'E-WW-YYYY-HH:mm');
+          var m = moment('0-' + event.week + '-' + event.year + '-19:45', 'E-WW-YYYY-HH:mm');
           $scope.nextEvent = m.format('HH:mm dddd Do MMM YYYY');
           $scope.nextEventFromNow = m.fromNow();
         }
