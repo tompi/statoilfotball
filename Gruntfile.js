@@ -13,6 +13,7 @@ module.exports = function(grunt) {
     usemin: require('./tasks/usemin'),
     watch: require('./tasks/watch')
   });
+  grunt.registerTask('test', 'nodeunit');
 
   // Default task(s).
   grunt.registerTask('default', [

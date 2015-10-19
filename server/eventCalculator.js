@@ -1,5 +1,6 @@
 var moment = require('moment');
-var eventDay = 0;
+moment.locale('nb');
+var eventDay = 7;
 var eventHour = 19;
 var eventMinute = 45;
 var eventSecond = 0;
@@ -12,7 +13,7 @@ module.exports = {
     var currentYear = currentMoment.isoWeekYear();
 
     // Construct event date of current week:
-    currentMoment.day(eventDay);
+    currentMoment.isoWeekday(eventDay);
     currentMoment.hour(eventHour);
     currentMoment.minute(eventMinute);
     currentMoment.second(eventSecond);
