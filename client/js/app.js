@@ -1,8 +1,8 @@
-var webapp = angular.module('webapp', ['ngRoute', 'restangular', '$strap.directives']);
+var webapp = angular.module('webapp', ['ngRoute']);
 
 webapp.config(
-  ['$routeProvider', 'RestangularProvider',
-    function($routeProvider, RestangularProvider) {
+  ['$routeProvider',
+    function($routeProvider) {
       $routeProvider.
         when('/',
              {
@@ -13,12 +13,5 @@ webapp.config(
              {
                 redirectTo: '/'
              });
-      RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
-        return response.payload;
-      });
-      RestangularProvider.setRestangularFields({
-        id: "_id",
-      });
     }
 ]);
-
