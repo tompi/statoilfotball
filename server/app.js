@@ -33,17 +33,12 @@ app.configure('development', function(){
 
 
 var mongo = require('./mongo.js');
-//var mers = require('mers');
 var mc = config.mongodb;
 
-//app.use('/api/v1', mers({
 var  uri = process.env.MONGOHQ_URL;
 if (!uri) uri = 'mongodb://' + mc.user + ':' + mc.password + '@' + mc.host + '/' + mc.db;
 var mongoose = require('mongoose');
 mongoose.connect(uri);
-//}).rest());
-  //
-  //var 
 
 var userService = require('./userService')(mongoose);
 auth.init(app, config, passport, userService);

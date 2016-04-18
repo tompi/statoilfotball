@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
   require('grunt-load')(grunt).loadNpmTasks();
-
+  grunt.loadNpmTasks('grunt-webpack');
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -11,20 +11,22 @@ module.exports = function(grunt) {
     clean: require('./tasks/clean'),
     useminPrepare: require('./tasks/useminPrepare'),
     usemin: require('./tasks/usemin'),
-    watch: require('./tasks/watch')
+    watch: require('./tasks/watch'),
+    webpack: require('./tasks/webpack')
   });
   grunt.registerTask('test', 'nodeunit');
 
   // Default task(s).
   grunt.registerTask('default', [
-                     'clean', 
-                     'jshint', 
-                     'nodeunit', 
-                     'less', 
-                     'copy', 
-                     'useminPrepare', 
-                     'concat', 
-                     'uglify', 
-                     'cssmin', 
+                     'clean',
+                     'jshint',
+                     'nodeunit',
+                     'less',
+                     'copy',
+                     'useminPrepare',
+                     'concat',
+                     'uglify',
+                     'webpack',
+                     'cssmin',
                      'usemin']);
 };
