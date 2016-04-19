@@ -17,5 +17,9 @@ module.exports = {
   html: {
     files: ['client/**/*.html'],
     tasks: []
+  },
+  react: {
+    files: ['client-react/**'],
+    tasks: ['webpack']
   }
 };

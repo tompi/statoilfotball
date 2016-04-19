@@ -60,7 +60,19 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_reactDom2.default.render(_react2.default.createElement(_people2.default, null), document.getElementById('content'));
+	var people = [{
+	  displayName: 'Thomas Haukland',
+	  photo: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/4/000/15d/1a3/17f606a.jpg',
+	  email: 'thomas.haukland@gmail.com',
+	  _id: 'abcdef'
+	}, {
+	  displayName: 'Nissen',
+	  photo: 'https://www.byoumagazine.com/wp-content/uploads/2015/12/banbury-santa.jpg',
+	  email: 'nissen@gmail.com',
+	  _id: 'niss'
+	}];
+
+	_reactDom2.default.render(_react2.default.createElement(_people2.default, { people: people }), document.getElementById('content'));
 
 /***/ },
 /* 1 */
@@ -20027,6 +20039,100 @@
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(32);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _person = __webpack_require__(167);
+
+	var _person2 = _interopRequireDefault(_person);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+	  displayName: 'people',
+
+	  render: function render() {
+	    var peopleNodes = this.props.people.map(function (person) {
+	      return _react2.default.createElement(_person2.default, _extends({}, person, { key: person._id }));
+	    });
+
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'row' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'col-md-12' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'well well-sg' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'contacts coming' },
+	            _react2.default.createElement(
+	              'b',
+	              null,
+	              'Disse kommer:'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { 'ng-repeat': 'user in event.coming' },
+	              peopleNodes
+	            ),
+	            _react2.default.createElement('div', { className: 'clearfix' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'contacts maybeComing' },
+	            _react2.default.createElement(
+	              'b',
+	              null,
+	              'Disse kommer KANSKJE:'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { 'ng-repeat': 'user in event.maybeComing' },
+	              _react2.default.createElement('div', { className: 'contact', 'ng-include': true, src: '\'fotball/user.html\'' })
+	            ),
+	            _react2.default.createElement('div', { className: 'clearfix' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'contacts notComing' },
+	            _react2.default.createElement(
+	              'b',
+	              null,
+	              'Disse kommer IKKE:'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { 'ng-repeat': 'user in event.notComing' },
+	              _react2.default.createElement('div', { className: 'contact', 'ng-include': true, src: '\'fotball/user.html\'' })
+	            ),
+	            _react2.default.createElement('div', { className: 'clearfix' })
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 167 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -20038,13 +20144,41 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
-	  displayName: 'people',
+	  displayName: 'person',
 
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
-	      { className: 'well' },
-	      'Lots of beautiful people...'
+	      { className: 'contact' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'media' },
+	        _react2.default.createElement(
+	          'a',
+	          { className: 'thumbnail pull-left', href: this.props.photo },
+	          _react2.default.createElement('img', { className: 'media-object profile-photo', src: this.props.photo })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'media-body' },
+	          _react2.default.createElement(
+	            'h4',
+	            { className: 'media-heading' },
+	            this.props.displayName
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            _react2.default.createElement(
+	              'a',
+	              { 'ng-href': 'mailto:{this.props.email}', className: 'btn btn-xs btn-default' },
+	              _react2.default.createElement('i', { className: 'fa fa-envelope' }),
+	              '  ',
+	              this.props.email
+	            )
+	          )
+	        )
+	      )
 	    );
 	  }
 	});
