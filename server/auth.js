@@ -36,7 +36,7 @@ exports.init = function(app, config, passport, userService) {
     app.get('/auth/google',
             passport.authenticate('google', {
               scope: [
-                'https://www.googleapis.com/auth/userinfo.profile', 
+                'https://www.googleapis.com/auth/userinfo.profile',
                 'https://www.googleapis.com/auth/userinfo.email'
               ]
             }));
@@ -75,7 +75,7 @@ exports.init = function(app, config, passport, userService) {
 
   // For debug purposes: get your own account info as json
   app.get('/auth/account', function(req, res) {
-    res.json(req.user);
+    res.json(req.user || {msg: "Not logged in..."});
   });
 
   app.get('/auth/logout', function(req, res) {
