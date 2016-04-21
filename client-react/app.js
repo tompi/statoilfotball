@@ -22,7 +22,7 @@ RestClient.getNextEvent((event) => {
         <div className="well well-sg">
           <Event event={nextEventMetaData}/>
           <Feedback/>
-          <People coming={event.coming} maybecoming={event.maybeComing} notcoming={event.notComing}/>
+          <People event={event}/>
         </div>
       </div>
     </div>,
