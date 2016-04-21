@@ -20291,6 +20291,27 @@
 	      component.setState({ user: user });
 	    });
 	  },
+	  coming: function coming() {
+	    _restClient2.default.changeStatus({
+	      coming: true,
+	      maybeComing: false,
+	      notComing: false
+	    });
+	  },
+	  maybeComing: function maybeComing() {
+	    _restClient2.default.changeStatus({
+	      coming: false,
+	      maybeComing: true,
+	      notComing: false
+	    });
+	  },
+	  notComing: function notComing() {
+	    _restClient2.default.changeStatus({
+	      coming: false,
+	      maybeComing: false,
+	      notComing: true
+	    });
+	  },
 	  render: function render() {
 	    if (this.state.user.email) {
 	      // GUI to let user say if he's coming
@@ -20313,22 +20334,22 @@
 	              { className: 'col-md-8' },
 	              _react2.default.createElement(
 	                'a',
-	                { className: 'btn btn-default', 'ng-className': '{disabled: coming}',
-	                  'ng-click': 'coming=true;notComing=false;maybeComing=false;changeStatus();' },
+	                { className: 'btn btn-default',
+	                  onClick: this.coming },
 	                _react2.default.createElement('i', { className: 'fa fa-thumbs-up fa-3' }),
 	                ' Jeg kommer'
 	              ),
 	              _react2.default.createElement(
 	                'a',
-	                { className: 'btn btn-default', 'ng-className': '{disabled: maybeComing}',
-	                  'ng-click': 'coming=false;notComing=false;maybeComing=true;changeStatus();' },
+	                { className: 'btn btn-default',
+	                  onClick: this.maybeComing },
 	                _react2.default.createElement('i', { className: 'fa fa-question fa-3' }),
 	                ' Jeg kommer kanskje'
 	              ),
 	              _react2.default.createElement(
 	                'a',
-	                { className: 'btn btn-default', 'ng-className': '{disabled: notComing}',
-	                  'ng-click': 'coming=false;notComing=true;maybeComing=false;changeStatus();' },
+	                { className: 'btn btn-default',
+	                  onClick: this.notComing },
 	                _react2.default.createElement('i', { className: 'fa fa-thumbs-down fa-3' }),
 	                ' Jeg kommer ikke'
 	              )
@@ -20380,17 +20401,25 @@
 /* 170 */
 /***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	var me = {};
 
-	function getJson(url, next) {
-	  fetch(url, {
-	    credentials: "same-origin"
-	  }).then(function (response) {
+	function getJson(url, next, body) {
+	  var reqParams = {
+	    "credentials": "same-origin"
+	  };
+	  if (body) {
+	    reqParams.method = "POST";
+	    reqParams.body = JSON.stringify(body);
+	    reqParams.headers = new Headers({
+	      "Content-Type": 'application/json'
+	    });
+	  }
+	  fetch(url, reqParams).then(function (response) {
 	    response.json().then(next);
 	  });
 	}
@@ -20405,6 +20434,10 @@
 
 	me.logout = function (next) {
 	  getJson('/auth/logout', next);
+	};
+
+	me.changeStatus = function (newStatus, next) {
+	  getJson('/event/changeStatus', next, newStatus);
 	};
 
 	exports.default = me;

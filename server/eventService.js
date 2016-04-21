@@ -25,6 +25,7 @@ module.exports = function(connection) {
   };
 
   function addOrRemove(belongs, id, array) {
+    console.log("User " + (belongs ? "belongs" : "does not belong"));
     if (belongs) {
       array.push(id);
     } else {
@@ -34,9 +35,9 @@ module.exports = function(connection) {
 
   me.changeStatus = function(userId, coming, notComing, maybeComing, next) {
     me.findOrCreateNextEvent(function(event) {
-      addOrRemove(coming, userId, event.coming);   
-      addOrRemove(notComing, userId, event.notComing);   
-      addOrRemove(maybeComing, userId, event.maybeComing);   
+      addOrRemove(coming, userId, event.coming);
+      addOrRemove(notComing, userId, event.notComing);
+      addOrRemove(maybeComing, userId, event.maybeComing);
       event.save(function() {
         me.emit('eventChanged');
         me.findOrCreateNextEvent(next);

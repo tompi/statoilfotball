@@ -13,6 +13,27 @@ export default React.createClass({
       component.setState({user})
     });
   },
+  coming: function() {
+    RestClient.changeStatus({
+        coming: true,
+        maybeComing: false,
+        notComing: false
+    });
+  },
+  maybeComing: function() {
+    RestClient.changeStatus({
+        coming: false,
+        maybeComing: true,
+        notComing: false
+    });
+  },
+  notComing: function() {
+    RestClient.changeStatus({
+        coming: false,
+        maybeComing: false,
+        notComing: true
+    });
+  },
   render: function() {
     if (this.state.user.email) {
       // GUI to let user say if he's coming
@@ -24,16 +45,16 @@ export default React.createClass({
                 <Person {...this.state.user}/>
               </div>
               <div className="col-md-8">
-                <a className="btn btn-default" ng-className="{disabled: coming}"
-                  ng-click="coming=true;notComing=false;maybeComing=false;changeStatus();">
+                <a className="btn btn-default"
+                  onClick={this.coming}>
                   <i className="fa fa-thumbs-up fa-3"></i> Jeg kommer
                 </a>
-                <a className="btn btn-default" ng-className="{disabled: maybeComing}"
-                  ng-click="coming=false;notComing=false;maybeComing=true;changeStatus();">
+                <a className="btn btn-default"
+                  onClick={this.maybeComing}>
                   <i className="fa fa-question fa-3"></i> Jeg kommer kanskje
                 </a>
-                <a className="btn btn-default" ng-className="{disabled: notComing}"
-                  ng-click="coming=false;notComing=true;maybeComing=false;changeStatus();">
+                <a className="btn btn-default"
+                  onClick={this.notComing}>
                   <i className="fa fa-thumbs-down fa-3"></i> Jeg kommer ikke
                 </a>
               </div>
