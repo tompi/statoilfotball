@@ -40,7 +40,7 @@ module.exports = {
           }
           // Now sort users by count descending
           cachedResult = usersArray.sort(function(a, b) {
-            return a.count - b.count;
+            return b.count - a.count;
           });
           // Insert into cache
           cache.set(cacheKey, cachedResult);
