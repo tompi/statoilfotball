@@ -31,7 +31,7 @@ export default React.createClass({
   },
   render: function() {
     var ppl = this.state.users.map(function(user) {
-      return <MiniPerson {...user}/>;
+      return <MiniPerson {...user} key={user.id}/>;
     });
     return (
       <div className="well">

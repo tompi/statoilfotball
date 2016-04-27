@@ -19,6 +19,7 @@ module.exports = {
           usersById[user._id] = {
             displayName: user.displayName,
             photo : user.photo,
+            id: user._id,
             count: 0
           };
         });
