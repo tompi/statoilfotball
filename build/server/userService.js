@@ -17,8 +17,8 @@ module.exports = function(connection) {
             // First add calculated email and photo attributes
             // (instead of those pesky arrays of objects...)
             profile.email = getFirstValue(profile.emails);
-            profile.photo = getFirstValue(profile.photos) || 
-                            profile._json.picture || 
+            profile.photo = getFirstValue(profile.photos) ||
+                            profile._json.picture ||
                             '';
             profile.name.middleName = profile.name.middleName || '';
             if (usr) {

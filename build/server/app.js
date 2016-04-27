@@ -54,8 +54,6 @@ app.post('/event/changeStatus', function(req, res) {
   if (!req.isAuthenticated()) res.json({error: 'not logged in!'});
   else {
     // Extract parameters
-    console.log(req.body);
-    console.log(req.user);
     eventService.changeStatus(
       req.user._id,
       req.body.coming,

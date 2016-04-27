@@ -25,7 +25,6 @@ module.exports = function(connection) {
   };
 
   function addOrRemove(belongs, id, array) {
-    console.log("User " + (belongs ? "belongs" : "does not belong"));
     if (belongs) {
       array.push(id);
     } else {
