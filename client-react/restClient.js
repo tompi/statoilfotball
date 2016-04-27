@@ -34,4 +34,8 @@ me.changeStatus = function(newStatus, next) {
   getJson('/event/changeStatus', next, newStatus);
 };
 
+me.getMostActiveUsers = (next) => {
+  getJson('/event/mostActiveUsers', next);
+};
+
 export default me;

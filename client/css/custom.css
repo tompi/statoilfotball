@@ -1,5 +1,5 @@
-html { 
-  background: url(../assets/img/background.jpg); /* no-repeat center center fixed; 
+html {
+  background: url(../assets/img/background.jpg); /* no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -16,6 +16,9 @@ ul {
 
 img.profile-photo {
   max-width: 80px;
+}
+img.mini-pic {
+  max-height: 20px;
 }
 
 .contact {

@@ -40,19 +40,24 @@ if (!uri) uri = 'mongodb://' + mc.user + ':' + mc.password + '@' + mc.host + '/'
 var mongoose = require('mongoose');
 mongoose.connect(uri);
 
-var userService = require('./userService')(mongoose);
+var userService = require('./userService');
+userService.init(mongoose);
 auth.init(app, config, passport, userService);
 
 // Custom rest endpoints:
-var eventService = require('./eventService')(mongoose);
+var eventService = require('./eventService');
+eventService.init(mongoose);
 app.get('/event/next', function(req, res) {
   eventService.findOrCreateNextEvent(function(event) {
     res.json(event);
   });
 });
-app.post('/event/changeStatus', function(req, res) {
+function checkLoggedIn(req, res, next) {
   if (!req.isAuthenticated()) res.json({error: 'not logged in!'});
-  else {
+  else next();
+}
+app.post('/event/changeStatus', function(req, res) {
+  checkLoggedIn(req, res, function() {
     // Extract parameters
     eventService.changeStatus(
       req.user._id,
@@ -62,21 +67,27 @@ app.post('/event/changeStatus', function(req, res) {
       function(event) {
         res.json(event);
       });
-    }
+  });
 });
 
 app.post('/event/updateDescription', function(req, res) {
-  if (!req.isAuthenticated()) res.json({error: 'not logged in!'});
-  else {
+  checkLoggedIn(req, res, function() {
     // Extract parameters
     eventService.updateDescription(
       req.body.description,
       function(event) {
         res.json(event);
       });
-    }
+  });
+});
+var mostActiveUsers = require('./mostActiveUsers');
+app.get('/event/mostActiveUsers', function(req, res) {
+  mostActiveUsers.getMostActiveUsers(function(users) {
+    res.json(users);
+  });
 });
 
+// Fire up the backend server
 var server = http.createServer(app);
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
@@ -85,6 +96,7 @@ server.listen(app.get('port'), function(){
 // Sockets
 var io = require('socket.io').listen(server);
 
+// Forward server-side 'eventChanged' to clients
 io.sockets.on('connection', function(socket) {
   eventService.on('eventChanged', function(event) {
     socket.emit('eventChanged', event);

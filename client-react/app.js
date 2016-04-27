@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import People from './people.jsx'
 import Event from './event.jsx'
 import Feedback from './feedback.jsx'
+import MostActivePeople from './mostActivePeople.jsx'
 
 import RestClient from './restClient.js'
 
@@ -18,12 +19,15 @@ RestClient.getNextEvent((event) => {
   }
   ReactDOM.render(
     <div className="row">
-      <div className="col-md-12">
+      <div className="col-md-8">
         <div className="well well-sg">
           <Event event={nextEventMetaData}/>
           <Feedback/>
           <People event={event}/>
         </div>
+      </div>
+      <div className="col-md-4">
+        <MostActivePeople/>
       </div>
     </div>,
     document.getElementById('content'));
