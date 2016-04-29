@@ -1,6 +1,6 @@
 var url = require('url');
 
-var production = process.env.NODE_ENV === 'production';
+var production = true;
 
 var  passportConfig = {
     debug: {
