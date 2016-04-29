@@ -1,6 +1,6 @@
 var url = require('url');
 
-var production = typeof(NODE_ENV) !== 'undefined' && NODE_ENV === 'production';
+var production = process.env.NODE_ENV === 'production';
 
 var  passportConfig = {
     debug: {
