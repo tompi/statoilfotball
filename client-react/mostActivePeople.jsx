@@ -30,12 +30,23 @@ export default React.createClass({
     return { users: [] };
   },
   render: function() {
+    // Build list of minipeople with name+pic
     var ppl = this.state.users.map(function(user) {
       return <MiniPerson {...user} key={user.id}/>;
     });
+    // Build mailto link
+    var mailLink = 'mailto:' + this.state.users.map(function(user) {
+      return user.email;
+    }).join(',');
+    mailLink += '?subject=' + encodeURIComponent('Husk fotballtrening');
+    mailLink += '&body=' + encodeURIComponent('Neste trening på actionball: ');
+    mailLink += encodeURIComponent(this.props.event.nextDateString);
+    mailLink += encodeURIComponent('\n\nMeld deg på her: http://fotball.us\n');
+
     return (
       <div className="well">
         <h3>Totalt antall treninger:</h3>
+        <a className="btn btn-primary" href={mailLink}>Mail til alle</a>
         {ppl}
       </div>
     );

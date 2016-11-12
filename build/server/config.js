@@ -19,10 +19,10 @@
 
 module.exports = {
   mongodb: {
-    host: 'ds033734.mongolab.com:33734',
-    db: 'webstepfotball',
-    user: 'webstep',
-    password: 'topsecret'
+    host: 'localhost',
+    db: 'app22058375',
+    user: 'tompi',
+    password: 'tompi'
   },
   sessionSecret: 'webstepsecret',
   passport: {

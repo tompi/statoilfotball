@@ -82,7 +82,7 @@
 
 	_restClient2.default.getNextEvent(function (event) {
 	  // Convert week to date
-	  var m = (0, _moment2.default)('7-' + event.week + '-' + event.year + '-19:45', 'E-WW-YYYY-HH:mm');
+	  var m = (0, _moment2.default)('7-' + event.week + '-' + event.year + '-19:45', 'E-WW-YYYY-HH:mm').locale('nb');
 	  var nextEventMetaData = {
 	    nextDateString: m.format('HH:mm dddd Do MMM YYYY'),
 	    nextDateFromNow: m.fromNow()
@@ -104,7 +104,7 @@
 	    _react2.default.createElement(
 	      'div',
 	      { className: 'col-md-4' },
-	      _react2.default.createElement(_mostActivePeople2.default, null)
+	      _react2.default.createElement(_mostActivePeople2.default, { event: nextEventMetaData })
 	    )
 	  ), document.getElementById('content'));
 	});
@@ -21745,10 +21745,10 @@
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
-	      { 'class': 'row' },
+	      { className: 'row' },
 	      _react2.default.createElement(
 	        'div',
-	        { 'class': 'col-md-12' },
+	        { className: 'col-md-12' },
 	        _react2.default.createElement(
 	          'h3',
 	          null,
@@ -21977,9 +21977,19 @@
 	    return { users: [] };
 	  },
 	  render: function render() {
+	    // Build list of minipeople with name+pic
 	    var ppl = this.state.users.map(function (user) {
 	      return _react2.default.createElement(MiniPerson, _extends({}, user, { key: user.id }));
 	    });
+	    // Build mailto link
+	    var mailLink = 'mailto:' + this.state.users.map(function (user) {
+	      return user.email;
+	    }).join(',');
+	    mailLink += '?subject=' + encodeURIComponent('Husk fotballtrening');
+	    mailLink += '&body=' + encodeURIComponent('Neste trening på actionball: ');
+	    mailLink += encodeURIComponent(this.props.event.nextDateString);
+	    mailLink += encodeURIComponent('\n\nMeld deg på her: http://fotball.us\n');
+
 	    return _react2.default.createElement(
 	      'div',
 	      { className: 'well' },
@@ -21987,6 +21997,11 @@
 	        'h3',
 	        null,
 	        'Totalt antall treninger:'
+	      ),
+	      _react2.default.createElement(
+	        'a',
+	        { className: 'btn btn-primary', href: mailLink },
+	        'Mail til alle'
 	      ),
 	      ppl
 	    );

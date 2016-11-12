@@ -1,3 +1,5 @@
+// Get all users with a count of how many events they have attended
+
 var userService = require('./userService');
 var eventService = require('./eventService');
 var NodeCache = require( "node-cache" );
@@ -18,6 +20,7 @@ module.exports = {
         users.forEach(function(user) {
           usersById[user._id] = {
             displayName: user.displayName,
+            email: user.email,
             photo : user.photo,
             id: user._id,
             count: 0

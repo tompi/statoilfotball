@@ -3,3 +3,4 @@ node_modules/
 client/js/lib/
 client/assets/fonts/
 .tmp/
+.mongo/

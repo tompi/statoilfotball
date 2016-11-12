@@ -50,8 +50,8 @@ auth.init(app, config, passport, userService);
 var eventService = require('./eventService');
 eventService.init(mongoose);
 app.get('/event/next', function(req, res) {
-  eventService.findOrCreateNextEvent(function(event) {
-    res.json(event);
+  eventService.findOrCreateNextEvent(function(nextEvent) {
+    res.json(nextEvent);
   });
 });
 function checkLoggedIn(req, res, next) {
@@ -66,8 +66,8 @@ app.post('/event/changeStatus', function(req, res) {
       req.body.coming,
       req.body.notComing,
       req.body.maybeComing,
-      function(event) {
-        res.json(event);
+      function(changedStatus) {
+        res.json(changedStatus);
       });
   });
 });
@@ -75,17 +75,23 @@ app.post('/event/changeStatus', function(req, res) {
 app.post('/event/updateDescription', function(req, res) {
   checkLoggedIn(req, res, function() {
     // Extract parameters
-    eventService.updateDescription(
-      req.body.description,
-      function(event) {
-        res.json(event);
-      });
+    eventService.updateDescription(req.body.description, function(updatedDescription) {
+      res.json(updatedDescription);
+    });
   });
 });
+
 var mostActiveUsers = require('./mostActiveUsers');
 app.get('/event/mostActiveUsers', function(req, res) {
   mostActiveUsers.getMostActiveUsers(function(users) {
     res.json(users);
+  });
+});
+
+var dumpData = require('./dumpData');
+app.get('/dumpData', function(req, res) {
+  dumpData.dumpData(function(data) {
+    res.json(data);
   });
 });
 
