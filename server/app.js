@@ -35,7 +35,7 @@ app.configure('development', function(){
 // Set up mongodb connection
 var mongo = require('./mongo.js');
 var mc = config.mongodb;
-var  uri = process.env.MONGOHQ_URL;
+var  uri = process.env.MONGODB_URI;
 // If environment mongo connection string is configured, use this, else use config
 if (!uri) uri = 'mongodb://' + mc.user + ':' + mc.password + '@' + mc.host + '/' + mc.db;
 var mongoose = require('mongoose');
