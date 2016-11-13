@@ -20,8 +20,8 @@ module.exports = {
   build: {
     files: [
       {expand: true, cwd: 'server/', src: ['**'], dest: 'build/server/'},
-      {expand: true, cwd: 'client', src: ['**/*', '!css/**/*', '!js/**/*'], dest: 'build/client', filter: 'isFile'},
-      {expand: true, cwd: 'client-react', src: ['*.html'], dest: 'build/client', filter: 'isFile'}
+      {expand: true, cwd: 'client-react', src: ['*.html'], dest: 'build/client', filter: 'isFile'},
+      {expand: true, cwd: 'client', src: ['**/*', '!css/**/*', '!js/**/*'], dest: 'build/client', filter: 'isFile'}
     ]
   }
 };
